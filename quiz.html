@@ -33,10 +33,10 @@
       </a>
 
       <div class="header-actions">
-        <a href="index.html" class="btn btn-secondary">
+        <a href="index.html" class="btn btn-secondary btn-nav-home">
           <i class="fa-solid fa-arrow-left"></i> <span>All Chapters</span>
         </a>
-        <button id="btn-download-pdf" class="btn btn-primary" title="Download this Chapter as PDF">
+        <button id="btn-download-pdf" class="btn btn-primary btn-nav-pdf" title="Download this Chapter as PDF">
           <i class="fa-solid fa-file-pdf"></i> <span>Download PDF</span>
         </button>
         <button id="theme-toggle-btn" class="btn btn-secondary btn-icon" title="Toggle Theme">
@@ -51,9 +51,9 @@
     
     <!-- Breadcrumb & Chapter Switcher Bar -->
     <div class="quiz-top-nav">
-      <div style="display: flex; align-items: center; gap: 10px;">
+      <div class="quiz-nav-left">
         <span class="quiz-chapter-badge" id="quiz-badge">Chapter 1</span>
-        <select id="quick-chapter-select" class="form-control" style="width: auto; padding: 6px 12px; font-size: 0.88rem;" onchange="window.location.href='quiz.html?chapter=' + this.value">
+        <select id="quick-chapter-select" class="form-control quick-chapter-select" onchange="window.location.href='quiz.html?chapter=' + this.value">
           <option value="1">Chapter 1: Just Delegate It (A Crash Course)</option>
           <option value="2">Chapter 2: Governance, Risk, and Responsible Use</option>
           <option value="3">Chapter 3: Workflow Design & Diagnosis</option>
@@ -64,9 +64,9 @@
         </select>
       </div>
 
-      <div style="display: flex; align-items: center; gap: 10px;">
-        <button id="btn-reset-quiz" class="btn btn-secondary" style="font-size: 0.82rem; padding: 6px 12px;" title="Reset answers for this chapter">
-          <i class="fa-solid fa-rotate-right"></i> Reset Progress
+      <div class="quiz-nav-right">
+        <button id="btn-reset-quiz" class="btn btn-secondary" title="Reset answers for this chapter">
+          <i class="fa-solid fa-rotate-right"></i> <span>Reset Progress</span>
         </button>
       </div>
     </div>
