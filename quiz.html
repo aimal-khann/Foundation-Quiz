@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chapter MCQ Quiz | Executive Exam Portal</title>
+  <meta name="description" content="Interactive Chapter MCQ Quiz with detailed explanations, distractor analysis, and PDF export.">
+  
+  <!-- Google Fonts: Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Top Navigation Header -->
+  <header class="app-header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo-area">
+        <div class="logo-icon">
+          <i class="fa-solid fa-layer-group"></i>
+        </div>
+        <div class="logo-text">
+          <h1>Certification Exam Portal</h1>
+          <p>Interactive Question Bank & Explanations</p>
+        </div>
+      </a>
+
+      <div class="header-actions">
+        <a href="index.html" class="btn btn-secondary">
+          <i class="fa-solid fa-arrow-left"></i> <span>All Chapters</span>
+        </a>
+        <button id="btn-download-pdf" class="btn btn-primary" title="Download this Chapter as PDF">
+          <i class="fa-solid fa-file-pdf"></i> <span>Download PDF</span>
+        </button>
+        <button id="theme-toggle-btn" class="btn btn-secondary btn-icon" title="Toggle Theme">
+          <i class="fa-solid fa-sun"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Quiz Interface Container -->
+  <main class="quiz-container">
+    
+    <!-- Breadcrumb & Chapter Switcher Bar -->
+    <div class="quiz-top-nav">
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <span class="quiz-chapter-badge" id="quiz-badge">Chapter 1</span>
+        <select id="quick-chapter-select" class="form-control" style="width: auto; padding: 6px 12px; font-size: 0.88rem;" onchange="window.location.href='quiz.html?chapter=' + this.value">
+          <option value="1">Chapter 1: Just Delegate It (A Crash Course)</option>
+          <option value="2">Chapter 2: Governance, Risk, and Responsible Use</option>
+          <option value="3">Chapter 3: Workflow Design & Diagnosis</option>
+          <option value="4">Chapter 4: Skills & Connectors: Architecture & Safe-Use</option>
+          <option value="5">Chapter 5: ChatGPT & Claude: Architectures, Workspaces & Tooling</option>
+          <option value="6">Chapter 6: AI Fluency: The 4D Framework</option>
+          <option value="7">Chapter 7: General Agents on the Web</option>
+        </select>
+      </div>
+
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <button id="btn-reset-quiz" class="btn btn-secondary" style="font-size: 0.82rem; padding: 6px 12px;" title="Reset answers for this chapter">
+          <i class="fa-solid fa-rotate-right"></i> Reset Progress
+        </button>
+      </div>
+    </div>
+
+    <!-- Chapter Header Card -->
+    <div class="quiz-header-card glass">
+      <div class="quiz-header-top">
+        <h2 class="quiz-chapter-title" id="quiz-title">Chapter Title</h2>
+        <div class="quiz-status-stats">
+          <div class="stat-pill correct">
+            <i class="fa-solid fa-circle-check"></i> <span id="stat-correct">0</span> Correct
+          </div>
+          <div class="stat-pill wrong">
+            <i class="fa-solid fa-circle-xmark"></i> <span id="stat-wrong">0</span> Incorrect
+          </div>
+        </div>
+      </div>
+      <!-- Progress Track -->
+      <div class="quiz-progress-track">
+        <div id="quiz-progress-bar" class="quiz-progress-thumb" style="width: 0%;"></div>
+      </div>
+    </div>
+
+    <!-- Question Palette Drawer (Jump to specific question) -->
+    <div class="palette-card glass">
+      <div class="palette-header">
+        <span><i class="fa-solid fa-table-cells-large"></i> Question Palette (Click to Jump directly)</span>
+        <span style="font-weight: 500; font-size: 0.78rem;">Keys: [A-D] Select • [Enter] Confirm • [←/→] Navigate</span>
+      </div>
+      <div id="palette-grid" class="palette-grid">
+        <!-- Palette numbers dynamically rendered here -->
+      </div>
+    </div>
+
+    <!-- Active Question Card -->
+    <div class="question-card glass" id="question-area">
+      
+      <div class="question-badge-bar">
+        <span class="question-seq-badge" id="q-seq-badge">
+          <i class="fa-regular fa-circle-question"></i> Question 1
+        </span>
+      </div>
+
+      <h3 class="question-text" id="q-text">
+        Loading question...
+      </h3>
+
+      <!-- Options List -->
+      <div class="options-list" id="options-list">
+        <!-- Rendered dynamically -->
+      </div>
+
+      <!-- Action & Navigation Bar -->
+      <div class="quiz-actions-bar">
+        <div class="nav-buttons-group">
+          <button id="btn-prev" class="btn btn-secondary">
+            <i class="fa-solid fa-chevron-left"></i> Previous MCQ
+          </button>
+          <button id="btn-next" class="btn btn-secondary">
+            Next MCQ <i class="fa-solid fa-chevron-right"></i>
+          </button>
+        </div>
+
+        <button id="btn-confirm" class="btn btn-primary" disabled>
+          <i class="fa-solid fa-circle-check"></i> Confirm Answer
+        </button>
+      </div>
+
+      <!-- Explanation & Distractor Analysis (Revealed on Confirm) -->
+      <div id="explanation-area" style="display: none;"></div>
+
+    </div>
+
+  </main>
+
+  <!-- Markdown Import Modal -->
+  <div id="import-modal" class="modal-overlay">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3><i class="fa-solid fa-file-code" style="color: var(--accent-primary);"></i> Quick Import Questions (Markdown)</h3>
+        <button onclick="closeImportModal()" class="modal-close">&times;</button>
+      </div>
+      <p style="color: var(--text-secondary); font-size: 0.88rem; margin-bottom: 16px;">
+        Paste your Markdown formatted questions. The engine will instantly parse options (A, B, C, D), correct answers, explanations, and distractor analyses.
+      </p>
+
+      <div class="form-group">
+        <label for="import-chapter-select">Target Chapter:</label>
+        <select id="import-chapter-select" class="form-control">
+          <option value="1">Chapter 1: Just Delegate It (A Crash Course)</option>
+          <option value="2">Chapter 2: Governance, Risk, and Responsible Use</option>
+          <option value="3">Chapter 3: Workflow Design & Diagnosis</option>
+          <option value="4">Chapter 4: Skills & Connectors: Architecture & Safe-Use</option>
+          <option value="5">Chapter 5: ChatGPT & Claude: Architectures, Workspaces & Tooling</option>
+          <option value="6">Chapter 6: AI Fluency: The 4D Framework</option>
+          <option value="7">Chapter 7: General Agents on the Web</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="import-markdown-text">Markdown Questions Content:</label>
+        <textarea id="import-markdown-text" class="form-control" placeholder="### Question 1: What is...?
+A) Option A
+B) Option B
+C) Option C
+D) Option D
+**Correct Answer:** B
+**Explanation:** Detailed reason...
+- Why A is incorrect: Reason
+- Why C is incorrect: Reason
+- Why D is incorrect: Reason"></textarea>
+      </div>
+
+      <div style="display: flex; justify-content: flex-end; gap: 10px; margin-top: 20px;">
+        <button onclick="closeImportModal()" class="btn btn-secondary">Cancel</button>
+        <button onclick="handleImportSubmit()" class="btn btn-primary">
+          <i class="fa-solid fa-check"></i> Parse & Save Questions
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Data Scripts (Strictly 7 Chapters) -->
+  <script src="data/chapters_meta.js"></script>
+  <script src="data/chapter1.js"></script>
+  <script src="data/chapter2.js"></script>
+  <script src="data/chapter3.js"></script>
+  <script src="data/chapter4.js"></script>
+  <script src="data/chapter5.js"></script>
+  <script src="data/chapter6.js"></script>
+  <script src="data/chapter7.js"></script>
+
+  <!-- Master Application Script -->
+  <script src="js/app.js"></script>
+
+  <script>
+    // Keep chapter switcher in sync with URL
+    document.addEventListener('DOMContentLoaded', () => {
+      const params = new URLSearchParams(window.location.search);
+      const chId = params.get('chapter') || '1';
+      const select = document.getElementById('quick-chapter-select');
+      if (select) select.value = chId;
+    });
+  </script>
+</body>
+</html>

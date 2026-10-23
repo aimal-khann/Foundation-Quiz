@@ -1,0 +1,32 @@
+# OS generated files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor & IDE artifacts
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Agent workspace folder
+.agents/
+
+# Python cache & build files
+__pycache__/
+*.py[cod]
+*$py.class
+*.orig
+
+# Vercel & Node artifacts
+node_modules/
+.vercel/
+.npm/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Local environment variables
+.env
+.env.local
+.env.*.local

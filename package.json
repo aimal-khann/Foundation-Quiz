@@ -1,0 +1,19 @@
+{
+  "name": "giaic-ai-certification-exam-portal",
+  "version": "1.0.0",
+  "description": "Interactive 7-Chapter AI Certification MCQ Exam Portal with in-depth explanations, distractor analysis, and PDF export.",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx serve ."
+  },
+  "keywords": [
+    "mcq",
+    "quiz",
+    "certification",
+    "ai",
+    "interactive-exam",
+    "giaic"
+  ],
+  "author": "",
+  "license": "MIT"
+}

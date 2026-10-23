@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Certification Exam Portal | 7 Chapters Master Question Bank</title>
+  <meta name="description" content="Interactive 7-Chapter MCQ Exam Portal featuring instant confirmation, detailed explanations, distractor analysis, and PDF export.">
+  
+  <!-- Google Fonts: Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Top Navigation Header -->
+  <header class="app-header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo-area">
+        <div class="logo-icon">
+          <i class="fa-solid fa-layer-group"></i>
+        </div>
+        <div class="logo-text">
+          <h1>Certification Exam Portal</h1>
+          <p>7-Chapter Interactive MCQ Bank</p>
+        </div>
+      </a>
+
+      <div class="header-actions">
+        <button onclick="openImportModal(1)" class="btn btn-secondary" title="Paste/Import Markdown Questions">
+          <i class="fa-solid fa-file-import"></i> <span>Import MCQs</span>
+        </button>
+        <button id="theme-toggle-btn" class="btn btn-secondary btn-icon" title="Toggle Dark/Light Mode">
+          <i class="fa-solid fa-sun"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <div class="badge-tag">
+        <i class="fa-solid fa-bolt"></i> Exam Readiness & Deep Conceptual Mastery
+      </div>
+      <h1 class="hero-title">
+        Master All 7 Chapters with <br>
+        <span class="gradient-text">Interactive MCQs & In-Depth Explanations</span>
+      </h1>
+      <p class="hero-desc">
+        Select an answer, confirm to reveal instant feedback, explore why incorrect options are false, and download comprehensive PDF study revision sheets for any chapter.
+      </p>
+
+      <!-- Global Stats Ribbon -->
+      <div class="stats-ribbon">
+        <div class="stat-item glass">
+          <div class="stat-icon" style="color: #38bdf8;">
+            <i class="fa-solid fa-layer-group"></i>
+          </div>
+          <div class="stat-content">
+            <h3 id="stat-total-chapters">7</h3>
+            <p>Curated Chapters</p>
+          </div>
+        </div>
+
+        <div class="stat-item glass">
+          <div class="stat-icon" style="color: #818cf8;">
+            <i class="fa-solid fa-circle-question"></i>
+          </div>
+          <div class="stat-content">
+            <h3 id="stat-total-questions">0</h3>
+            <p>Total MCQs Bank</p>
+          </div>
+        </div>
+
+        <div class="stat-item glass">
+          <div class="stat-icon" style="color: var(--success);">
+            <i class="fa-solid fa-circle-check"></i>
+          </div>
+          <div class="stat-content">
+            <h3 id="stat-total-answered">0</h3>
+            <p>Answered Questions</p>
+          </div>
+        </div>
+
+        <div class="stat-item glass">
+          <div class="stat-icon" style="color: var(--warning);">
+            <i class="fa-solid fa-bullseye"></i>
+          </div>
+          <div class="stat-content">
+            <h3 id="stat-accuracy">0%</h3>
+            <p>Overall Accuracy</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Chapter Directory Section -->
+  <main class="container">
+    <div class="chapter-section-header">
+      <div>
+        <h2>All 7 Exam Chapters</h2>
+        <p style="color: var(--text-muted); font-size: 0.9rem;">Choose any chapter below to start the interactive quiz or download as PDF</p>
+      </div>
+      
+      <div class="search-filter-box">
+        <div class="search-input-wrapper">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input type="text" id="chapter-search" class="search-input" placeholder="Search chapters, topics...">
+        </div>
+      </div>
+    </div>
+
+    <!-- Chapter Grid dynamic mount -->
+    <div id="chapters-grid" class="chapter-grid"></div>
+  </main>
+
+  <!-- Markdown Import Modal -->
+  <div id="import-modal" class="modal-overlay">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3><i class="fa-solid fa-file-code" style="color: var(--accent-primary);"></i> Quick Import Questions (Markdown)</h3>
+        <button onclick="closeImportModal()" class="modal-close">&times;</button>
+      </div>
+      <p style="color: var(--text-secondary); font-size: 0.88rem; margin-bottom: 16px;">
+        Paste your Markdown formatted questions. The engine will instantly parse options (A, B, C, D), correct answers, explanations, and distractor analyses.
+      </p>
+
+      <div class="form-group">
+        <label for="import-chapter-select">Target Chapter:</label>
+        <select id="import-chapter-select" class="form-control">
+          <option value="1">Chapter 1: Just Delegate It (A Crash Course)</option>
+          <option value="2">Chapter 2: Governance, Risk, and Responsible Use</option>
+          <option value="3">Chapter 3: Workflow Design & Diagnosis</option>
+          <option value="4">Chapter 4: Skills & Connectors: Architecture & Safe-Use</option>
+          <option value="5">Chapter 5: ChatGPT & Claude: Architectures, Workspaces & Tooling</option>
+          <option value="6">Chapter 6: AI Fluency: The 4D Framework</option>
+          <option value="7">Chapter 7: General Agents on the Web</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="import-markdown-text">Markdown Questions Content:</label>
+        <textarea id="import-markdown-text" class="form-control" placeholder="### Question 1: What is...?
+A) Option A
+B) Option B
+C) Option C
+D) Option D
+**Correct Answer:** B
+**Explanation:** Detailed reason...
+- Why A is incorrect: Reason
+- Why C is incorrect: Reason
+- Why D is incorrect: Reason"></textarea>
+      </div>
+
+      <div style="display: flex; justify-content: flex-end; gap: 10px; margin-top: 20px;">
+        <button onclick="closeImportModal()" class="btn btn-secondary">Cancel</button>
+        <button onclick="handleImportSubmit()" class="btn btn-primary">
+          <i class="fa-solid fa-check"></i> Parse & Save Questions
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Data Scripts (Strictly 7 Chapters) -->
+  <script src="data/chapters_meta.js"></script>
+  <script src="data/chapter1.js"></script>
+  <script src="data/chapter2.js"></script>
+  <script src="data/chapter3.js"></script>
+  <script src="data/chapter4.js"></script>
+  <script src="data/chapter5.js"></script>
+  <script src="data/chapter6.js"></script>
+  <script src="data/chapter7.js"></script>
+
+  <!-- Master Application Script -->
+  <script src="js/app.js"></script>
+</body>
+</html>
