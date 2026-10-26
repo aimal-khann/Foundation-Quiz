@@ -1,6 +1,6 @@
-# 🎓 AI Certification Interactive MCQ Exam Portal (7 Chapters)
+# 🎓 AI Certification Interactive MCQ Exam Portal (10 Chapters)
 
-An enterprise-grade, high-performance web application designed for comprehensive preparation and testing across all **7 core AI certification chapters**. 
+An enterprise-grade, high-performance web application designed for comprehensive preparation and testing across all **10 core AI certification chapters**. 
 
 Engineered with instant choice evaluation, detailed rationale, in-depth distractor analysis (*why other options are incorrect*), rapid question jump palette, keyboard accessibility, and one-click PDF revision sheet generation.
 
@@ -38,6 +38,9 @@ Deployable instantly to **Vercel**, **GitHub Pages**, or any static hosting serv
 | **Ch. 5** | **ChatGPT & Claude: Architectures & Tooling** | Model tradeoffs, context window utilization, system prompts, artifacts |
 | **Ch. 6** | **AI Fluency: The 4D Framework** | Discover, Design, Delegate, Diagnose operational framework |
 | **Ch. 7** | **General Agents on the Web** | Browser automation, DOM perception, multi-step web reasoning, safety |
+| **Ch. 8** | **AI Prompting in 2026 (A Crash Course)** | Power-user briefing, Loud/Quiet/Secret framework, operational limits, context hygiene |
+| **Ch. 9** | **What AI Actually Is (A Crash Course)** | Probabilistic token prediction, frozen weights vs active context, sampling temperature |
+| **Ch. 10** | **Code You Never Write** | VPRF framework, deterministic execution vs estimation, code problems, artifact sandboxes |
 
 ---
 
@@ -81,7 +84,10 @@ Deployable instantly to **Vercel**, **GitHub Pages**, or any static hosting serv
 │   ├── chapter4.js            # Chapter 4 questions
 │   ├── chapter5.js            # Chapter 5 questions
 │   ├── chapter6.js            # Chapter 6 questions
-│   └── chapter7.js            # Chapter 7 questions
+│   ├── chapter7.js            # Chapter 7 questions
+│   ├── chapter8.js            # Chapter 8 questions
+│   ├── chapter9.js            # Chapter 9 questions
+│   └── chapter10.js           # Chapter 10 questions
 ├── scripts/
 │   └── parse_mcqs.py          # Fast Python parser for Markdown question ingestion
 ├── vercel.json                # Vercel deployment & security headers config

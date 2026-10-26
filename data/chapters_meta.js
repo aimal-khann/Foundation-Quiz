@@ -55,5 +55,29 @@ window.QUIZ_METADATA = [
     category: "Autonomous Agents & Web",
     icon: "fa-robot",
     color: "#3b82f6"
+  },
+  {
+    id: 8,
+    title: "Chapter 8: AI Prompting in 2026 (A Crash Course)",
+    subtitle: "Power-user briefing, Loud/Quiet/Secret framework, operational limits, context hygiene, and prompt architecture",
+    category: "Prompt Engineering & Architecture",
+    icon: "fa-wand-magic-sparkles",
+    color: "#8b5cf6"
+  },
+  {
+    id: 9,
+    title: "Chapter 9: What AI Actually Is (A Crash Course)",
+    subtitle: "Probabilistic token prediction, frozen weights vs active context, sampling temperature, and neural mechanics",
+    category: "AI Foundations & Mechanics",
+    icon: "fa-brain",
+    color: "#ec4899"
+  },
+  {
+    id: 10,
+    title: "Chapter 10: Code You Never Write",
+    subtitle: "VPRF framework, deterministic execution vs estimation, code problem identification, and artifact sandboxes",
+    category: "Deterministic Computing & Code",
+    icon: "fa-code",
+    color: "#f59e0b"
   }
 ];
